@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+$html--BackgroundColor: black !default;
+$html--Color: #ccc !default;
+
+$a--Color: #ccc !default;
+$a--is-active--Color: #AC17C6 !default;
+$a--Color--Hover: #B63FCB !default;
+
+
+html, body {
+  font-size: 16px;
+  color: $html--Color;
+  background-color: $html--BackgroundColor;
+  height: 100%;
+  width: 100%;
+}
+
+.main-header {
+  padding: 0 1rem;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__title {
+    font-size: 1.25rem;
+  }
+}
+
+.main-nav {
+  .nav-link {
+    color: $a--Color;
+    font-size: 0.875rem;
+    font-weight: 100;
+
+    &:hover {
+      color: $a--Color--Hover;
+    }
+
+    &.disabled:hover {
+      color: $a--Color;
+    }
+
+    &.active {
+      color: $a--is-active--Color;
+
+      &:hover {
+        color: $a--Color--Hover;
+      }
+    }
+  }
+}
