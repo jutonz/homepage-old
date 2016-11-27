@@ -12,6 +12,7 @@ suites:
   - name: default
     run_list:
       - recipe[homepage::default]
+      - recipe[homepage::deploy]
     attributes:
   - name: server
     run_list:
