@@ -1,0 +1,22 @@
+DEPENDENCIES
+  apt (~> 3.0.0)
+  brightbox-ruby (~> 1.2.1)
+  build-essential (~> 2.3.1)
+  runit (~> 1.7.6)
+
+GRAPH
+  7-zip (1.0.2)
+    windows (>= 1.2.2)
+  apt (3.0.0)
+  brightbox-ruby (1.2.2)
+    apt (>= 0.0.0)
+  build-essential (2.3.1)
+    7-zip (>= 0.0.0)
+  compat_resource (12.16.2)
+  ohai (4.2.2)
+    compat_resource (>= 12.14)
+  packagecloud (0.2.5)
+  runit (1.7.8)
+    packagecloud (>= 0.0.0)
+  windows (2.1.1)
+    ohai (>= 4.0.0)
