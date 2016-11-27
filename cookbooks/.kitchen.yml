@@ -13,3 +13,7 @@ suites:
     run_list:
       - recipe[homepage::default]
     attributes:
+  - name: server
+    run_list:
+      - recipe[homepage::server]
+    attributes:
