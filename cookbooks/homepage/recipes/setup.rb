@@ -23,3 +23,23 @@ directory '/srv/homepage/current' do
   recursive true
   action :create
 end
+
+directory "/home/deploy/.npm-packages" do
+  owner 'deploy'
+  group 'www-data'
+  recursive true
+  mode '0755'
+  action :create
+end
+
+apt_repository 'nodejs' do
+  uri 'https://deb.nodesource.com/node_6.x'
+  components ['main']
+  distribution 'xenial'
+  key 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+  action :add
+  deb_src true
+end
+
+execute 'apt-get update'
+apt_package "nodejs"

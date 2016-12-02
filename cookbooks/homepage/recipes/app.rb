@@ -5,16 +5,25 @@ directory "/var/www" do
 end
 
 # Create shared directory structure for app
-path = "/srv/homepage/shared/config"
-execute "mkdir -p #{path}" do
+shared_path = "/srv/homepage/current/shared"
+directory shared_path do
   user "deploy"
   group "www-data"
-  creates path
+  mode 0755
+  recursive true
+end
+
+%w(config pids log).each do |path|
+  directory "#{shared_path}/#{path}" do
+    user "deploy"
+    group "www-data"
+    mode 0755
+  end
 end
 
 # Create database.yml
 rds_db_instance = search("aws_opsworks_rds_db_instance").first
-template "#{path}/database.yml" do
+template "#{shared_path}/database.yml" do
   source "database.yml.erb"
   mode 0644
   user "deploy"
