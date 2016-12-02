@@ -1,31 +1,24 @@
-upstream unicorn {
-  server unix:/tmp/unicorn.homepage.sock fail_timeout=0;
+upstream app {
+    # Path to Unicorn SOCK file, as defined previously
+    server unix:/home/deploy/homepage/shared/sockets/unicorn.homepage.sock fail_timeout=0;
 }
 
 server {
-  server_name www.jutonz.com;
-  return 301 $scheme://jutonz.com$request_uri;
-}
+    listen 80;
+    server_name localhost;
 
-server {
-  listen 80 default deferred;
-  server_name jutonz.com;
-  root /var/www/homepage/current/public;
+    root /home/deploy/homepage/public;
 
-  location ^~ /assets/ {
-    gzip_static on;
-    expires max;
-    add_header Cache-Control public;
-  }
+    try_files $uri/index.html $uri @app;
 
-  try_files $uri/index.html $uri @unicorn;
-  location @unicorn {
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_redirect off;
-    proxy_pass http://unicorn;
-  }
+    location @app {
+        proxy_pass http://app;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
 
-  error_page 500 502 503 504 /500.html;
-  keepalive_timeout 5;
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
 }
