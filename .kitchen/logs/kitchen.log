@@ -1,0 +1,27 @@
+E, [2016-12-02T13:18:01.685078 #47139] ERROR -- Kitchen: ------Exception-------
+E, [2016-12-02T13:18:01.685156 #47139] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2016-12-02T13:18:01.685174 #47139] ERROR -- Kitchen: Message: Kitchen YAML file /Volumes/code/personal/homepage/.kitchen.yml does not exist.
+E, [2016-12-02T13:18:01.685186 #47139] ERROR -- Kitchen: ----------------------
+E, [2016-12-02T13:18:01.685197 #47139] ERROR -- Kitchen: ------Backtrace-------
+E, [2016-12-02T13:18:01.685206 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/loader/yaml.rb:74:in `read'
+E, [2016-12-02T13:18:01.685216 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/config.rb:154:in `data'
+E, [2016-12-02T13:18:01.685237 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/config.rb:133:in `suites'
+E, [2016-12-02T13:18:01.685247 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/config.rb:184:in `filter_instances'
+E, [2016-12-02T13:18:01.685300 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/config.rb:143:in `build_instances'
+E, [2016-12-02T13:18:01.685319 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/config.rb:119:in `instances'
+E, [2016-12-02T13:18:01.685334 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/command.rb:115:in `filtered_instances'
+E, [2016-12-02T13:18:01.685344 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/command.rb:145:in `parse_subcommand'
+E, [2016-12-02T13:18:01.685354 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/command/list.rb:33:in `call'
+E, [2016-12-02T13:18:01.685363 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/cli.rb:56:in `perform'
+E, [2016-12-02T13:18:01.685407 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/cli.rb:124:in `list'
+E, [2016-12-02T13:18:01.685433 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/thor-0.19.1/lib/thor/command.rb:27:in `run'
+E, [2016-12-02T13:18:01.685446 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/thor-0.19.1/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2016-12-02T13:18:01.685460 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/cli.rb:338:in `invoke_task'
+E, [2016-12-02T13:18:01.685472 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/thor-0.19.1/lib/thor.rb:359:in `dispatch'
+E, [2016-12-02T13:18:01.685482 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+E, [2016-12-02T13:18:01.685498 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/bin/kitchen:13:in `block in <top (required)>'
+E, [2016-12-02T13:18:01.685548 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/lib/kitchen/errors.rb:174:in `with_friendly_errors'
+E, [2016-12-02T13:18:01.685572 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/test-kitchen-1.14.0/bin/kitchen:13:in `<top (required)>'
+E, [2016-12-02T13:18:01.685585 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/bin/kitchen:22:in `load'
+E, [2016-12-02T13:18:01.685595 #47139] ERROR -- Kitchen: /Users/Justin/.rbenv/versions/2.3.3/bin/kitchen:22:in `<main>'
+E, [2016-12-02T13:18:01.685605 #47139] ERROR -- Kitchen: ----End Backtrace-----

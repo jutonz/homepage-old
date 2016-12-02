@@ -2,6 +2,8 @@ DEPENDENCIES
   apt (~> 3.0.0)
   brightbox-ruby (~> 1.2.1)
   build-essential (~> 2.3.1)
+  homepage
+    path: homepage
   runit (~> 1.7.6)
 
 GRAPH
@@ -13,6 +15,11 @@ GRAPH
   build-essential (2.3.1)
     7-zip (>= 0.0.0)
   compat_resource (12.16.2)
+  homepage (0.2.0)
+    apt (>= 0.0.0)
+    brightbox-ruby (>= 0.0.0)
+    build-essential (>= 0.0.0)
+    runit (>= 0.0.0)
   ohai (4.2.2)
     compat_resource (>= 12.14)
   packagecloud (0.2.5)

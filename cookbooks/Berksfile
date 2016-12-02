@@ -1,6 +1,7 @@
 source "https://supermarket.chef.io"
 
-cookbook 'build-essential', '~> 2.3.1'
-cookbook 'apt', '~> 3.0.0'
-cookbook 'runit', '~> 1.7.6'
-cookbook 'brightbox-ruby', '~> 1.2.1'
+cookbook 'homepage', path: 'homepage'
+cookbook 'build-essential'
+cookbook 'apt'
+cookbook 'runit'
+cookbook 'brightbox-ruby'

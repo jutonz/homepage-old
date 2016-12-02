@@ -9,12 +9,10 @@ platforms:
   - name: ubuntu-16.04
 
 suites:
-  - name: default
+  - name: deploy
     run_list:
-      - recipe[homepage::default]
+      - recipe[homepage::setup]
+      - recipe[homepage::nginx]
+      - recipe[homepage::app]
       - recipe[homepage::deploy]
-    attributes:
-  - name: server
-    run_list:
-      - recipe[homepage::server]
     attributes:
