@@ -3,6 +3,8 @@ apt_update 'keep the apt cache fresh' do
   action :periodic
 end
 
+package "libpq-dev"
+
 include_recipe 'build-essential'
 
 user 'deploy' do

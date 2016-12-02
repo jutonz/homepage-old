@@ -5,7 +5,7 @@ directory "/var/www" do
 end
 
 # Create shared directory structure for app
-path = "/var/www/homepage/shared/config"
+path = "/srv/homepage/shared/config"
 execute "mkdir -p #{path}" do
   user "deploy"
   group "www-data"
@@ -35,6 +35,11 @@ template "#{path}/database.yml" do
   })
 end
 
+# Bundle
+execute "bundle" do
+  cwd "/srv/homepage/current"
+end
+
 # Create unicorn config
 template "/etc/init.d/unicorn_homepage" do
   source "unicorn.sh.erb"
@@ -46,3 +51,4 @@ end
 execute "update-rc.d unicorn_homepage defaults" do
   not_if "ls /etc/rc2.d | grep unicorn_homepage"
 end
+
