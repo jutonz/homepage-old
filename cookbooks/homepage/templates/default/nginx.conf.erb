@@ -1,13 +1,13 @@
 upstream app {
     # Path to Unicorn SOCK file, as defined previously
-    server unix:/home/deploy/homepage/shared/sockets/unicorn.homepage.sock fail_timeout=0;
+    server unix:/srv/homepage/shared/sockets/unicorn.homepage.sock fail_timeout=0;
 }
 
 server {
     listen 80;
     server_name localhost;
 
-    root /home/deploy/homepage/public;
+    root /srv/homepage/public;
 
     try_files $uri/index.html $uri @app;
 
