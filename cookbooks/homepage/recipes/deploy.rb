@@ -67,6 +67,6 @@ execute "RAILS_ENV=production bin/rails assets:precompile" do
 end
 
 service "unicorn_homepage" do
-  supports %i(status restart)
-  action :restart
+  supports %i(status restart upgrade)
+  action :upgrade
 end
