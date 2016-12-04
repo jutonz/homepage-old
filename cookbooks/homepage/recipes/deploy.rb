@@ -56,3 +56,8 @@ execute "RAILS_ENV=production bin/rails assets:precompile" do
   group "www-data"
   cwd "/srv/homepage/current"
 end
+
+# Start unicorn if not already
+execute "sudo service unicorn_homepage start" do
+  not_if { `sudo service unicorn_homepage status`.chomp == "0" }
+end
