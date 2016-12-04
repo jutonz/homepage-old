@@ -41,8 +41,7 @@ env_vars = {}
 env_vars.merge!(node["environment_variables"]) if node["environment_variables"]
 env_vars.merge!(app["environment"]) if app["environment"]
 env_vars.merge!({ "INSTANCE_NAME" => instance['hostname']}) # "app1" etc
-rails_env = env_vars["RAILS_ENV"] || "development"
-env_vars.merge!({"RAILS_ENV" => rails_env}) if rails_env
+env_vars.merge!({"RAILS_ENV" => "production"})
 template "/etc/environment" do
   source "environment.erb"
   mode 0664
