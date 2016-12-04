@@ -38,29 +38,6 @@ directory "/srv/homepage/current/tmp/pids" do
   recursive true
 end
 
-# Create database.yml
-rds_db_instance = search("aws_opsworks_rds_db_instance").first
-template "/srv/homepage/current/config/database.yml" do
-  source "database.yml.erb"
-  mode 0644
-  user "deploy"
-  group "www-data"
-  variables({
-    database: {
-      database:  'homepage_production',
-      adapter:   'postgresql',
-      encoding:  'unicode',
-      host:      rds_db_instance['address'],
-      username:  rds_db_instance['db_user'],
-      password:  rds_db_instance['db_password'],
-      pool:      5,
-      reconnect: true,
-      port:      5432
-    },
-    environment: 'production'
-  })
-end
-
 # Create unicorn config
 template "/etc/init.d/unicorn_homepage" do
   source "unicorn.sh.erb"
@@ -68,8 +45,3 @@ template "/etc/init.d/unicorn_homepage" do
   user "deploy"
   group "www-data"
 end
-
-execute "update-rc.d unicorn_homepage defaults" do
-  not_if "ls /etc/rc2.d | grep unicorn_homepage"
-end
-

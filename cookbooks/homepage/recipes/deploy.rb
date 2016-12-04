@@ -40,8 +40,17 @@ end
 env_vars = {}
 env_vars.merge!(node["environment_variables"]) if node["environment_variables"]
 env_vars.merge!(app["environment"]) if app["environment"]
-env_vars.merge!({ "INSTANCE_NAME" => instance['hostname']}) # "app1" etc
-env_vars.merge!({"RAILS_ENV" => "production"})
+
+rds_db_instance = search("aws_opsworks_rds_db_instance").first
+env_vars.merge!({
+  "RAILS_ENV" => "production",
+  "INSTANCE_NAME" => instance['hostname'], # app1, app2, etc
+  "HOMEPAGE_DATABASE_HOST" => rds_db_instance['address'],
+  "HOMEPAGE_DATABASE_PORT" => rds_db_instance['port'],
+  "HOMEPAGE_DATABASE_USERNAME" => rds_db_instance['db_user'],
+  "HOMEPAGE_DATABASE_PASSWORD" => rds_db_instance['db_password']
+})
+
 template "/etc/environment" do
   source "environment.erb"
   mode 0664
@@ -57,7 +66,7 @@ execute "RAILS_ENV=production bin/rails assets:precompile" do
   cwd "/srv/homepage/current"
 end
 
-# Start unicorn if not already
-execute "sudo service unicorn_homepage start" do
-  not_if { `sudo service unicorn_homepage status`.chomp == "0" }
+service "unicorn_homepage" do
+  supports %i(status restart)
+  action :restart
 end
