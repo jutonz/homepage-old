@@ -4,6 +4,16 @@ directory "/var/www" do
   mode 0755
 end
 
+git '/srv/homepage/current' do
+  repository 'https://github.com/jutonz/homepage.git'
+  user 'deploy'
+  group 'www-data'
+  revision 'master'
+  checkout_branch 'master'
+  enable_checkout false
+  action :sync
+end
+
 # Create shared directory structure for app
 shared_path = "/srv/homepage/current/shared"
 directory shared_path do
@@ -13,7 +23,7 @@ directory shared_path do
   recursive true
 end
 
-%w(config pids log).each do |path|
+%w(config pids log sockets).each do |path|
   directory "#{shared_path}/#{path}" do
     user "deploy"
     group "www-data"
@@ -21,9 +31,16 @@ end
   end
 end
 
+directory "/srv/homepage/current/tmp/pids" do
+  user "deploy"
+  group "www-data"
+  mode 0755
+  recursive true
+end
+
 # Create database.yml
 rds_db_instance = search("aws_opsworks_rds_db_instance").first
-template "#{shared_path}/database.yml" do
+template "/srv/homepage/current/config/database.yml" do
   source "database.yml.erb"
   mode 0644
   user "deploy"
@@ -31,7 +48,7 @@ template "#{shared_path}/database.yml" do
   variables({
     database: {
       database:  'homepage_production',
-      adapter:  'postgresql',
+      adapter:   'postgresql',
       encoding:  'unicode',
       host:      rds_db_instance['address'],
       username:  rds_db_instance['db_user'],
@@ -42,11 +59,6 @@ template "#{shared_path}/database.yml" do
     },
     environment: 'production'
   })
-end
-
-# Bundle
-execute "bundle" do
-  cwd "/srv/homepage/current"
 end
 
 # Create unicorn config
